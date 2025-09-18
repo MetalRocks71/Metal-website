@@ -1,61 +1,72 @@
 function scrollToSection(sectionId) {
-    document.getElementById(sectionId).scrollIntoView({
-        behavior: 'smooth'
-    });
+  document.getElementById(sectionId).scrollIntoView({
+    behavior: 'smooth'
+  });
 }
 
 function filterGenres(category, event) {
-    const cards = document.querySelectorAll('.subgenre-card');
-    const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.subgenre-card');
+  const buttons = document.querySelectorAll('.filter-btn');
 
-    // Update active button
-    buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+  // Update active button
+  buttons.forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
 
-    // Filter cards
-    cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-            card.style.display = 'block';
-            card.style.animation = 'fadeIn 0.5s ease';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+  // Filter cards
+  cards.forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = 'block';
+      card.style.animation = 'fadeIn 0.5s ease';
+    } else {
+      card.style.display = 'none';
+    }
+  });
 }
 
 // back to top button
-document.addEventListener('DOMContentLoaded', () => {
-    const backToTopButton = document.querySelector('.backToTopButton');
 
-    function toggleBackToTopButton() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('show');
-        } else {
-            backToTopButton.classList.remove('show');
-        }
-    }
+const backToTopButton = document.querySelector('.backToTopButton');
+console.log('Button:', backToTopButton);
 
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
-    let ticking = false;
 
-    function updateBackToTopButton() {
-        toggleBackToTopButton();
-        ticking = false;
-    }
 
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateBackToTopButton);
-            ticking = true;
-        }
-    }
+function toggleBackToTopButton() {
+  if (window.pageYOffset > 300) {
+    backToTopButton.classList.add('show');
+  } else {
+    backToTopButton.classList.remove('show');
+  }
+}
 
-    window.addEventListener('scroll', requestTick);
-    backToTopButton.addEventListener('click', scrollToTop);
+function scrollToTop() {
+  document.documentElement.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+
+let ticking = false;
+
+function updateBackToTopButton() {
+  toggleBackToTopButton();
+  ticking = false;
+}
+
+function requestTick() {
+  if (!ticking) {
+    requestAnimationFrame(updateBackToTopButton);
+    ticking = true;
+  }
+}
+
+window.addEventListener('scroll', requestTick);
+backToTopButton.addEventListener('click', scrollToTop);
+backToTopButton.addEventListener('click', () => {
+  console.log('Button clicked');
 });
+
 
 // form validator
 
@@ -92,7 +103,7 @@ function checkEmail(input) {
 // Check required fields
 function checkRequired(inputArr) {
   let isRequired = false;
-  inputArr.forEach(function(input) {
+  inputArr.forEach(function (input) {
     if (input.value.trim() === '') {
       showError(input, `${getFieldName(input)} is required`);
       isRequired = true;
@@ -134,10 +145,10 @@ function getFieldName(input) {
 }
 
 // Event listeners
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  if(!checkRequired([username, email, password, password2])){
+  if (!checkRequired([username, email, password, password2])) {
     checkLength(username, 3, 15);
     checkLength(password, 6, 25);
     checkEmail(email);
@@ -147,15 +158,15 @@ form.addEventListener('submit', function(e) {
 });
 
 function togglePassword(inputId) {
-    const input = document.getElementById(inputId);
-    const container = input.parentElement; // Get the password-container
-    const button = container.querySelector('.toggle-password'); // Find the button within container
-    
-    if (input.type === 'password') {
-        input.type = 'text';
-        button.textContent = '🙈'; // Change to hide icon
-    } else {
-        input.type = 'password';
-        button.textContent = '👁️'; // Change to show icon
-    }
+  const input = document.getElementById(inputId);
+  const container = input.parentElement; // Get the password-container
+  const button = container.querySelector('.toggle-password'); // Find the button within container
+
+  if (input.type === 'password') {
+    input.type = 'text';
+    button.textContent = '🙈'; // Change to hide icon
+  } else {
+    input.type = 'password';
+    button.textContent = '👁️'; // Change to show icon
+  }
 }
