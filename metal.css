@@ -20,8 +20,6 @@ body {
     display: flex;
     align-items: center;
     /* Centers content vertically */
-    background-image: url("../img/HeavyMetalImage.jpg");
-
 }
 
 .hero::before {
