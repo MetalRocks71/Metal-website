@@ -219,11 +219,11 @@
                 <h2 class="section-title_2">Metal Subgenres</h2>
 
                 <div class="filter-buttons">
-                    <button class="filter-btn active" onclick="filterGenres('all')">All Genres</button>
-                    <button class="filter-btn" onclick="filterGenres('classic')">Classic</button>
-                    <button class="filter-btn" onclick="filterGenres('extreme')">Extreme</button>
-                    <button class="filter-btn" onclick="filterGenres('progressive')">Progressive</button>
-                    <button class="filter-btn" onclick="filterGenres('modern')">Modern</button>
+                    <button class="filter-btn active" onclick="filterGenres('all', event)">All Genres</button>
+                    <button class="filter-btn" onclick="filterGenres('classic',event)">Classic</button>
+                    <button class="filter-btn" onclick="filterGenres('extreme',event)">Extreme</button>
+                    <button class="filter-btn" onclick="filterGenres('progressive',event)">Progressive</button>
+                    <button class="filter-btn" onclick="filterGenres('modern',event)">Modern</button>
                 </div>
 
                 <div class="subgenres-grid" id="subgenres-grid">
@@ -607,35 +607,35 @@
                     bands cited in this website and are protected by copyright and trademark laws. </p>
             </div>
 
-                <div class="container-from">
-                    <form id="form" class="form">
-                        <h2>Register With Us</h2>
-                        <div class="form-control">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" placeholder="Enter username" />
-                            <small>Error message</small>
-                        </div>
-                        <div class="form-control">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" placeholder="Enter email" />
-                            <small>Error message</small>
-                        </div>
-                        <div class="form-control">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" placeholder="Enter password" />
-                            <button type="button" class="toggle-password" onclick="togglePassword('password')">👁️</button>
-                            <small>Error message</small>
-                        </div>
-                        <div class="form-control">
-                            <label for="password2">Confirm Password</label>
-                            <input type="password" id="password2" placeholder="Enter password again" />
-                            <button type="button" class="toggle-password" onclick="togglePassword('password2')">👁️</button>
-                            <small>Error message</small>
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-                
+            <div class="container-from">
+                <form id="form" class="form">
+                    <h2>Register With Us</h2>
+                    <div class="form-control">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter username" />
+
+                    </div>
+                    <div class="form-control">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" placeholder="Enter email" />
+
+                    </div>
+                    <div class="form-control">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" />
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">👁️</button>
+
+                    </div>
+                    <div class="form-control">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" id="password2" placeholder="Enter password again" />
+                        <button type="button" class="toggle-password" onclick="togglePassword('password2')">👁️</button>
+
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
         </footer>
 
 

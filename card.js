@@ -4,7 +4,7 @@ function scrollToSection(sectionId) {
     });
 }
 
-function filterGenres(category) {
+function filterGenres(category, event) {
     const cards = document.querySelectorAll('.subgenre-card');
     const buttons = document.querySelectorAll('.filter-btn');
 
@@ -22,41 +22,11 @@ function filterGenres(category) {
         }
     });
 }
-// Add CSS animation keyframes
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-`;
-document.head.appendChild(style);
 
-// Add scroll animations
-window.addEventListener('scroll', () => {
-    const cards = document.querySelectorAll('.subgenre-card');
-    cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            card.style.transform = 'translateY(0)';
-            card.style.opacity = '1';
-        }
-    });
-});
-
-// Initialize card animations
-document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.subgenre-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(50px)';
-        card.style.transition = 'all 0.6s ease';
-        card.style.transitionDelay = `${index * 0.1}s`;
-    });
-});
 
 // Back to Top Button Functionality
-const backToTopButton = document.getElementsByIClass('backToTopButton');
+const backToTopButton = document.getElementsByClassName('backToTopButton')[0];
+
 
 // Show/hide button based on scroll position
 function toggleBackToTopButton() {
@@ -81,7 +51,7 @@ function scrollToTop() {
 }
 
 // Event listeners
-window.addEventListener('scroll', toggleBackToTopButton);
+window.addEventListener('scroll', requestTick);
 backToTopButton.addEventListener('click', scrollToTop);
 
 
@@ -188,10 +158,10 @@ form.addEventListener('submit', function(e) {
 
 });
 
-//toggle password visibility
 function togglePassword(inputId) {
     const input = document.getElementById(inputId);
-    const button = input.nextElementSibling;
+    const container = input.parentElement; // Get the password-container
+    const button = container.querySelector('.toggle-password'); // Find the button within container
     
     if (input.type === 'password') {
         input.type = 'text';
