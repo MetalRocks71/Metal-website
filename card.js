@@ -28,16 +28,10 @@ function filterGenres(category, event) {
 const backToTopButton = document.querySelectorAll('.backToTopButton');
 console.log('button:', backToTopButton);
 
-function toggleBackToTopButton() {
-  if (window.pageYOffset > 300) {
-    backToTopButton.classList.add('show');
-  } else {
-    backToTopButton.classList.remove('show');
-  }
-}
+
 
 function scrollToTop() {
-  document.documentElement.scrollToTop({
+  document.documentElement.scrollTo({
     top: 0,
     behavior: 'smooth'
   });
@@ -59,10 +53,8 @@ function requestTick() {
 }
 
 window.addEventListener('scroll', requestTick);
-backToTopButton.addEventListener('click', scrollToTop);
-backToTopButton.addEventListener('click', () => {
-  console.log('Button clicked');
-});
+
+
 
 
 // form validator
