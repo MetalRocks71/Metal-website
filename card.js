@@ -23,52 +23,40 @@ function filterGenres(category, event) {
     });
 }
 
+// back to top button
+document.addEventListener('DOMContentLoaded', () => {
+    const backToTopButton = document.querySelector('.backToTopButton');
 
-// Back to Top Button Functionality
-const backToTopButton = document.getElementsByClassName('backToTopButton')[0];
-
-
-// Show/hide button based on scroll position
-function toggleBackToTopButton() {
-    if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('show');
-    } else {
-        backToTopButton.classList.remove('show');
-    }
-}
-
-// Smooth scroll to top function
-function scrollToTop() {
-    const scrollStep = -window.scrollY / (2000 / 15); // Slower scroll (adjust 1000 for speed)
-
-    function step() {
-        if (window.scrollY !== 0) {
-            window.scrollBy(0, scrollStep);
-            requestAnimationFrame(step);
+    function toggleBackToTopButton() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
         }
     }
-    requestAnimationFrame(step);
-}
 
-// Event listeners
-window.addEventListener('scroll', requestTick);
-backToTopButton.addEventListener('click', scrollToTop);
-
-
-// Throttle scroll events for better performance
-let ticking = false;
-
-function updateBackToTopButton() {
-    toggleBackToTopButton();
-    ticking = false;
-}
-
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(updateBackToTopButton);
-        ticking = true;
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-}
+
+    let ticking = false;
+
+    function updateBackToTopButton() {
+        toggleBackToTopButton();
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateBackToTopButton);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick);
+    backToTopButton.addEventListener('click', scrollToTop);
+});
+
 // form validator
 
 const form = document.getElementById('form');
