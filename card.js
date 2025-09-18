@@ -25,11 +25,8 @@ function filterGenres(category, event) {
 
 // back to top button
 
-const backToTopButton = document.querySelector('.backToTopButton');
-console.log('Button:', backToTopButton);
-
-
-
+const backToTopButton = document.querySelectorAll('.backToTopButton');
+console.log('button:', backToTopButton);
 
 function toggleBackToTopButton() {
   if (window.pageYOffset > 300) {
@@ -40,7 +37,7 @@ function toggleBackToTopButton() {
 }
 
 function scrollToTop() {
-  document.documentElement.scrollTo({
+  document.documentElement.scrollToTop({
     top: 0,
     behavior: 'smooth'
   });
