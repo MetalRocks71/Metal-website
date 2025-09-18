@@ -23,36 +23,50 @@ function filterGenres(category, event) {
   });
 }
 
-// back to top button
+// Back to Top Button Functionality
+const backToTopButton = document.getElementsByIClass('backToTopButton');
 
-const backToTopButton = document.querySelectorAll('.backToTopButton');
-console.log('button:', backToTopButton);
-
-
-
-function scrollToTop() {
-  document.documentElement.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+// Show/hide button based on scroll position
+function toggleBackToTopButton() {
+    if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
 }
 
+// Smooth scroll to top function
+function scrollToTop() {
+    const scrollStep = -window.scrollY / (2000 / 15); // Slower scroll (adjust 1000 for speed)
 
+    function step() {
+        if (window.scrollY !== 0) {
+            window.scrollBy(0, scrollStep);
+            requestAnimationFrame(step);
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+// Event listeners
+window.addEventListener('scroll', toggleBackToTopButton);
+backToTopButton.addEventListener('click', scrollToTop);
+
+
+// Throttle scroll events for better performance
 let ticking = false;
 
 function updateBackToTopButton() {
-  toggleBackToTopButton();
-  ticking = false;
+    toggleBackToTopButton();
+    ticking = false;
 }
 
 function requestTick() {
-  if (!ticking) {
-    requestAnimationFrame(updateBackToTopButton);
-    ticking = true;
-  }
+    if (!ticking) {
+        requestAnimationFrame(updateBackToTopButton);
+        ticking = true;
+    }
 }
-
-window.addEventListener('scroll', requestTick);
 
 
 
